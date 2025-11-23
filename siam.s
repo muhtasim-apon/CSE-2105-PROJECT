@@ -1,12 +1,11 @@
-        AREA 	siam, CODE, READONLY
+        AREA  	myCode, CODE, READONLY
         EXPORT 	main
+		IMPORT	udiv16_nonrestoring
 
 main
-        LDR     R0, =0x11115555
-        LDR     R1, =0x55555555     
+        LDR     R0, =17
+        LDR     R1, =3
+        BL      udiv16_nonrestoring
 
-        EOR     R2, R0, R1	; Toggle all even bits using XOR
-
-STOP    B       STOP               
-
-        END
+stop
+        B       stop
