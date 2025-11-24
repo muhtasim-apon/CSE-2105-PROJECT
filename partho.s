@@ -2,7 +2,9 @@
         EXPORT partho_main
 
 partho_main
+        PUSH    {LR}            ; Save LR before calling subroutine
         BL      Add_16bit_Function
+        POP     {LR}            ; Restore LR before returning
         BX      LR
 
 Add_16bit_Function
