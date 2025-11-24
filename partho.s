@@ -4,6 +4,7 @@
 partho_main
         BL      Add_16bit_Function
 		BL		Rotation
+		BL		check
         BX      LR
 
 Add_16bit_Function
@@ -30,5 +31,14 @@ Rotation
         ; Mask to 16 bits
         UXTH    R6, R6           ; R6 = final 16-bit rotate
 		BX		LR
+check
+		; R0 = value
+        ; R1 = bit position
+		LDR     R0, =0x1234      ; 16-bit value
+        MOV     R1, #5           ; rotate amount n = 4
+        UXTH    R0, R0           ; R0 = R0 & 0xFFFF
 
+        LSR     R0, R0, R1      ; shift right by N bits  
+        AND     R0, R0, #1      ; mask lowest bit
+		
         END
